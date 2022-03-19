@@ -1,0 +1,9 @@
+1.Place the DockerFile, data, notebooks and requirements file in the same directory.
+
+2.Install Docker
+
+3.Run the below commands to setup docker container
+docker build . -t sandbox-datapreprocessing -f .\DockerFile.txt
+
+4.Run the below commands to run docker container
+docker run -it -p8888:8888 sandbox-datapreprocessing
