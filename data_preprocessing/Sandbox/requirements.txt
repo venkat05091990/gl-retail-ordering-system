@@ -1,8 +1,0 @@
-papermill
-ipykernel
-jupyterlab
-pandas
-numpy
-seaborn
-matplotlib
-openpyxl
