@@ -50,7 +50,8 @@ def run_preprocessing(source_data, input_notebook):
     
     status = 1
     db.update_job_status(batch_id, status)
-    
+    print("Batch Id : ", batch_id)
+    print("Please use the batch id for tracking the batch data preprocessing status.")
     # using papermill to run the notebook and saving the processed data, unprocessed data and processed notebooks
     pm.execute_notebook(source_notebook_path,
                         output_notebook_path,
