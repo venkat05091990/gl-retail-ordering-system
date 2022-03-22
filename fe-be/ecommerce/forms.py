@@ -14,7 +14,7 @@ from wtforms.validators import DataRequired, Length, Email
 from ecommerce import mysql
 from ecommerce.models import *
 
-from frontend.ecommerce.models import Product
+from ecommerce.models import Product
 
 
 def getAllProducts():
