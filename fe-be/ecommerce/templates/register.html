@@ -1,0 +1,49 @@
+{% extends "header.html"  %}
+{% block content %}
+
+<form action="/register" method="POST" type="submit" onsubmit="return validate();">
+    <p>Email: <input type="email" name="email"></p>
+    <P>Password: <input type="password" name="password" id="password" required></p>
+    <p>Confirm Password: <input type="password" name="cpassword" id="cpassword" required></p>
+    <p>First Name: <input type="text" name="firstName" required></p>
+    <p>Last Name: <input type="text" name="lastName" required></p>
+    <p>Address: <input type="text" name="address" required></p>
+    <p>Country:
+    <select id="countySel" name="country" size="1" required>
+        <option value="" selected="selected">-- Select Country --</option>
+    </select>
+    </p>
+    <br>
+    <br>
+    <p>State:
+    <select id="stateSel" name="state" size="1" required>
+        <option value="" selected="selected">-- Select State--</option>
+    </select>
+    </p>
+    <br>
+    <br>
+    <p>City:
+    <select id="citySel" name="city" size="1" required>
+        <option value="" selected="selected">-- Select City--</option>
+    </select>
+    </p>
+    <br>
+    <p>Zip Code: <input type="text" name="zipcode" required></p>
+    <p>Phone Number: <input type="text" name="phone" required></p>
+
+    <p><input type="submit" value="Register"></p>
+    <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+    </div>
+    <script>
+        // Get the modal
+        var modal = document.getElementById('id01');
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</form>
+{% endblock content %}

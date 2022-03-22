@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+	<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<title>GroCart</title>
+<!--		<link rel="icon" type="image/png" href="static/images/icons/favicon.png" >-->
+		<link rel="stylesheet" type="text/css" href="static/vendor/bootstrap/css/bootstrap.min.css" >
+<!--		<link rel="stylesheet" type="text/css" href="static/fonts/font-awesome-4.7.0/css/font-awesome.min.css" >-->
+<!--		<link rel="stylesheet" type="text/css" href="static/fonts/themify/themify-icons.css" >-->
+<!--		<link rel="stylesheet" type="text/css" href="static/fonts/Linearicons-Free-v1.0.0/icon-font.min.css" >-->
+<!--		<link rel="stylesheet" type="text/css" href="static/fonts/elegant-font/html-css/style.css" >-->
+<!--		<link rel="stylesheet" type="text/css" href="static/vendor/animate/animate.css" >-->
+<!--		<link rel="stylesheet" type="text/css" href="static/vendor/css-hamburgers/hamburgers.min.css" >-->
+<!--		<link rel="stylesheet" type="text/css" href="static/vendor/animsition/css/animsition.min.css" >-->
+<!--		<link rel="stylesheet" type="text/css" href="static/vendor/select2/select2.min.css" >-->
+<!--		<link rel="stylesheet" type="text/css" href="static/vendor/daterangepicker/daterangepicker.css" >-->
+<!--		<link rel="stylesheet" type="text/css" href="static/css/util.css" >-->
+<!--		<link rel="stylesheet" type="text/css" href="static/vendor/slick/slick.css" >-->
+<!--		<link rel="stylesheet" type="text/css" href="static/vendor/lightbox2/css/lightbox.min.css" >-->
+		<link rel="stylesheet" type="text/css" href="static/css/main.css" >
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/topStyle.css') }}">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<style>
+.MultiCarousel
+{ float: left; overflow: hidden; padding: 15px; padding-top: 100px; width: 100%; position:relative;
+}
+    .MultiCarousel .MultiCarousel-inner { transition: 1s ease all; float: left; }
+        .MultiCarousel .MultiCarousel-inner .item { float: left;}
+        .MultiCarousel .MultiCarousel-inner .item > div { text-align: center; padding:10px; margin:10px; background:#f1f1f1; color:#666;}
+    .MultiCarousel .leftLst, .MultiCarousel .rightLst
+    { position:absolute;
+    top:calc(50% - 20px);
+     }
+    .MultiCarousel .leftLst { left:0; }
+    .MultiCarousel .rightLst { right:0; }
+
+
+	#wrapper{
+position:relative;
+}
+#parent{
+position: absolute;
+width: 310px;
+height: 100px;
+border: 2px solid black;
+overflow:hidden;
+}
+.child{
+width: 100px;
+height: 100px;
+border: 1px solid red;
+float:left;
+}
+#leftarrow{
+position: absolute;
+height: 25px;
+width: 25px;
+position:absolute;
+}
+#rightarrow{
+position: absolute;
+height: 25px;
+width: 25px;
+position:absolute;
+}
+
+.mainbody {
+  background-image: url('static/images/background3.avif');
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}
+.logo {
+  margin: 10px;
+  padding: 70px;
+  width: 300px;
+  height: 400px;
+}
+* {box-sizing: border-box;}
+body {font-family: Verdana, sans-serif;}
+.mySlides {display: none;}
+img {vertical-align: middle;}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 5s;
+  animation-name: fade;
+  animation-duration: 5s;
+  max-height: 40px;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .9}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .9}
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .text {font-size: 11px}
+}
+#searchBox {
+	height: 25px;
+	width: 400px;
+	margin-left: 20px;
+	margin-top: 0px;
+	margin-bottom: 20px;
+	margin-right: 10px;
+	float: left;
+	font-size: 1em;
+}
+
+#searchButton {
+	height: 25px;
+	margin-top: 0px;
+	margin-bottom: 20px;
+	margin-right: 20px;
+	float: left;
+}
+#kart {
+    font-family: Montserrat-Regular;
+	color: black;
+	float: left;
+	font-size: 15px;
+}
+#cartIcon {
+	height: 30px;
+	width: 30px;
+}
+
+#searchIcon{
+
+	height: 30px;
+	width: 30px;
+	margin-top: 0px;
+	padding-bottom: 22px;
+}
+
+.main_menu > li:hover > a {
+  text-decoration: none;
+  border-bottom: 1px solid #333333;
+}
+
+.main_menu li {
+  position: relative;
+}
+
+.main_menu > li:hover > .sub_menu {
+  visibility: visible;
+  opacity: 1;
+}
+
+.sub_menu {
+  list-style-type: none;
+  position: absolute;
+  z-index: 1100;
+  top:0;
+  left:100%;
+  width: 225px;
+  background-color: #222222;
+  opacity: 0;
+  visibility: hidden;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  transition: all 0.4s;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+}
+
+.main_menu > li > .sub_menu {
+  top:100%;
+  left: 0;
+  position: absolute;
+}
+
+.in li:hover > .sub_menu {
+  visibility: visible;
+  opacity: 1;
+  position: absolute;
+}
+
+.in li {
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+}
+
+.in li, .sub_menu a {
+  padding: 0px;
+  font-family: Montserrat-Regular;
+  font-size: 13px;
+  color: white;
+}
+
+.in > li:hover > a {
+  color: #e65540;
+  text-decoration: none;
+
+}
+
+	body {font-family: Arial, Helvetica, sans-serif;}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+/* Extra styles for the cancel button */
+.registerbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: orange;
+}
+
+/* Center the image and position the close button */
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+  position: relative;
+}
+
+img.avatar {
+  width: 10%;
+  border-radius: 50%;
+}
+
+img.avatar {
+  width: 10%;
+  height: 10%;
+}
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 40%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: #000;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: red;
+  cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)}
+  to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+  from {transform: scale(0)}
+  to {transform: scale(1)}
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+  .registerbtn {
+     width: 100%;
+  }
+}
+
+form.example input[type=text] {
+  padding: 0px 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 85%;
+  background: #f1f1f1;
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+
+form.example button {
+  float: left;
+  width: 15%;
+  padding: 0px 25px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+
+form.example button:hover {
+  background: #0b7dda;
+}
+
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+.product{
+    position: relative;
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+.product-category{
+    padding: 0 10vw;
+    font-size: 30px;
+    font-weight: 500;
+    margin-bottom: 40px;
+    text-transform: capitalize;
+}
+.product-container{
+    padding: 0 10vw;
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+}
+
+.product-container::-webkit-scrollbar{
+    display: none;
+}
+
+.product-card{
+    flex: 0 0 auto;
+    width: 250px;
+    height: 450px;
+    margin-right: 40px;
+}
+
+.product-image{
+    position: relative;
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+}
+
+.product-thumb{
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+}
+
+.discount-tag{
+    position: absolute;
+    background: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    color: #ff7d7d;
+    right: 10px;
+    top: 10px;
+    text-transform: capitalize;
+}
+
+.card-btn{
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px;
+    width: 90%;
+    text-transform: capitalize;
+    border: none;
+    outline: none;
+    background: #fff;
+    border-radius: 5px;
+    transition: 0.5s;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.product-card:hover .card-btn{
+    opacity: 1;
+}
+
+.card-btn:hover{
+    background: #efefef;
+}
+
+.product-info{
+    width: 100%;
+    height: 100px;
+    padding-top: 10px;
+}
+
+.product-brand{
+    text-transform: uppercase;
+}
+
+.product-short-des{
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+    overflow: hidden;
+    opacity: 0.5;
+    text-transform: capitalize;
+    margin: 5px 0;
+}
+
+.price{
+    font-weight: 900;
+    font-size: 20px;
+}
+
+.actual-price{
+    margin-left: 20px;
+    opacity: 0.5;
+    text-decoration: line-through;
+}
+
+.pre-btn, .nxt-btn{
+    border: none;
+    width: 10vw;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #fff 100%);
+    cursor: pointer;
+    z-index: 8;
+}
+
+.pre-btn{
+    left: 0;
+    transform: rotate(180deg);
+}
+
+.nxt-btn{
+    right: 0;
+}
+
+.pre-btn img, .nxt-btn img{
+    opacity: 0.2;
+}
+
+.pre-btn:hover img, .nxt-btn:hover img{
+    opacity: 1;
+}
+
+
+</style>
+</head>
+<body>
+	<div class="row">
+		<div class="animsition">
+				<div class="header1">
+					<div class="container-menu-header">
+						<div class="wrap_header">
+							<div class="col-md-3">
+							<div>
+								<a class="link" href="/home">
+									<img src='static/images/Projectlogo3.jpg' style="width:150px;height:70px;">
+								</a>
+							</div>
+							<div class="animsition">
+				<!--		<div class="header1">-->
+				<!--				<div class="container-menu-header">-->
+
+				<!--					<div class="wrap_header">-->
+
+				<!--						&lt;!&ndash; Menu &ndash;&gt;-->
+				<!--						<div class="wrap_menu">-->
+				<!--							<nav class="menu">-->
+				<!--								<ul class="main_menu">-->
+				<!--									<li>-->
+				<!--										<a href="{{ url_for('root') }}">Home</a>-->
+				<!--									</li>-->
+				<!--									<li>-->
+				<!--									<a href="{{ url_for('root') }}">Search</a>-->
+				<!--								</li>-->
+				<!--								<li>-->
+				<!--	&lt;!&ndash;								<div id="kart">&ndash;&gt;-->
+				<!--										<a class="link" href="/cart">-->
+				<!--	&lt;!&ndash;										<img src={{url_for('static', filename='images/shoppingCart.png')}} id="cartIcon" />&ndash;&gt;-->
+				<!--											Cart {{productCountinKartForGivenUser}}-->
+				<!--										</a>-->
+				<!--	&lt;!&ndash;								</div>&ndash;&gt;-->
+				<!--								</li>-->
+				<!--									<li>-->
+				<!--										<a href="{{ url_for('getCategories') }}">Categories</a>-->
+				<!--									</li>-->
+				<!--									<li>-->
+				<!--										<a href="{{ url_for('logout') }}">Login</a>-->
+				<!--									</li>-->
+				<!--								</ul>-->
+				<!--							</nav>-->
+				<!--						</div>-->
+				<!--					</div>-->
+				<!--				</div>-->
+				<!--		</div>-->
+
+					</div>
+						</div>
+							<div class="col-md-6">
+							<br>
+				<!--			<input id="searchBox"  type="text" name="searchQuery" placeholder="Search Products Here">-->
+				<!--			<input id="searchButton" type="submit" value="Search">-->
+				<!--			<form class="example" action="/action_page.php" style="margin:auto;max-width:600px">-->
+				<!--			  <input type="text" placeholder="Search.." name="search2">-->
+				<!--			  <button type="submit"><img src="static/images/searchicon.png" id="searchIcon" /></button>-->
+				<!--			</form>-->
+							<form class="example" action="/action_page.php" style="margin:auto;max-width:600px">
+							  <input type="text" placeholder="Search.." name="search2">
+							  <button type="submit"><i class="fa fa-search"></i></button>
+							</form>
+						</div>
+							<div class="col-md-3">
+							<div class="in">
+							<ul>
+								<li>
+									<div id="kart">
+										<a class="link" href="/cart">
+											<img src="static/images/cart.png" id="cartIcon" />
+											Cart {{productCountinKartForGivenUser}}
+										</a>
+									</div>
+								</li>
+								<li>
+										{% if not loggedIn %}
+				<!--	<div id="signInButton">-->
+				<!--		<a class="link" href="/signIn">Sign In</a>-->
+				<!--	</div>-->
+					<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+
+				<div id="id01" class="modal">
+
+				  <form class="modal-content animate" action="/login" method="post">
+					<div class="imgcontainer">
+					  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+					  <img src={{ url_for('static', filename='images/login.jpg') }}  alt="Avatar" class="avatar">
+					</div>
+
+					<div class="container">
+					  <label for="uname"><b>Username</b></label>
+					  <input type="text" placeholder="Enter Username" name="email" required>
+					  <label for="psw"><b>Password</b></label>
+					  <input type="password" placeholder="Enter Password" name="password" required>
+					  <button type="submit">Login</button>
+					  <label>
+						<input type="checkbox" checked="checked" name="remember"> Remember me
+					  </label>
+					</div>
+
+					<div class="container" style="background-color:#f1f1f1">
+					  <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+					  <button type="button" onclick="document.getElementById('id01').style.display='none'"
+							  class="registerbtn"><a href="/registerationForm">Register here</a></button>
+						<span class="psw"><a href="#">Forgot password?</a></span>
+					</div>
+				  </form>
+				</div>
+
+				<script>
+				// Get the modal
+				var modal = document.getElementById('id01');
+
+				// When the user clicks anywhere outside of the modal, close it
+				window.onclick = function(event) {
+					if (event.target == modal) {
+						modal.style.display = "none";
+					}
+				}
+				</script>
+
+					{% else %}
+					<div class="dropdown">
+						<button class="dropbtn">Hello, {{firstName}}</button>
+						<div class="dropdown-content">
+							<a href="/account/orders">Your orders</a>
+							<a href="/account/profile">Your profile</a>
+							<hr>
+							<a href="/logout">Sign Out</a>
+						</div>
+					</div>
+					{% endif %}
+								</li>
+							</ul>
+							</div>
+
+						</div>
+						</div>
+					</div>
+				</div>
+		</div>
+	</div>
+
+	<!-- Title Page -->
+<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m">
+		<h2 class="l-text2 t-center" style="color:darkgoldenrod">
+			{%if trendtype =="least" %}
+				Top 3 least selling products
+			{% else %}
+				Top 3 most selling products
+			{% endif %}
+		</h2>
+<div class="size10 trans-0-4 m-t-10 m-b-10">				<!-- Button -->
+
+					<button class="">
+						{%if trendtype =="least" %}
+							<a href="/seeTrends?trend=most">Top 3 most selling products</a>
+						{% else %}
+						<a href="/seeTrends?trend=least">Top 3 least selling products</a>
+						{% endif %}
+
+					</button>
+
+
+</div>
+
+</section>
+<div>
+{{div_placeholder}}
+</div>
+</body>
+</html>
