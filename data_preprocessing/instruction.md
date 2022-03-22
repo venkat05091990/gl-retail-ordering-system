@@ -20,7 +20,11 @@
 
 7. Change the mysql database connection details in the cell below heading "Database Connection" input jupyter notebook and get_db_connection() function in db_setup.py file
    
+   Modifications in the db_setup.py
+   
    <img src="/data_preprocessing/screenshots/db_setup_file_connection.jpg" width=800 />
+   
+   Modifications in the input notebook Grocery_Data_Preprocessing.ipynb
    
    <img src="/data_preprocessing/screenshots/input notebook db_connection.jpg" width=800 />
 
