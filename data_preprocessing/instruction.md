@@ -10,7 +10,7 @@
 4. Run the following command from the project folder. This will install required libraries from Pipfile present in this directory. If the deployment team is not using pipenv, then the libraries in the Pipfile need to be manually installed. 
    pipenv install
    
-   <img src="/data_preprocessing/screenshots/pipenv.jpg" width=200 />
+   <img src="/data_preprocessing/screenshots/pipenv.jpg" width=400 />
 
 5. Run the following command to activate the pipenv environment
    pipenv shell
@@ -20,9 +20,9 @@
 
 7. Change the mysql database connection details in the cell below heading "Database Connection" input jupyter notebook and get_db_connection() function in db_setup.py file
    
-   <img src="/data_preprocessing/screenshots/db_setup_file_connection.jpg" width=400 />
+   <img src="/data_preprocessing/screenshots/db_setup_file_connection.jpg" width=800 />
    
-   <img src="/data_preprocessing/screenshots/input notebook db_connection.jpg" width=400 />
+   <img src="/data_preprocessing/screenshots/input notebook db_connection.jpg" width=800 />
 
 ## Perform Data Preprocessing
 
