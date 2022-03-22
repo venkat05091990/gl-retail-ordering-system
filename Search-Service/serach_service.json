@@ -1,0 +1,18 @@
+http://http://localhost:8501/
+
+Request::
+
+{
+  "user_search": "INDIA GATE",
+  "limit": 10
+}
+Response::
+
+{
+  [
+  "INDIA GATE Sweet Indulgence Rice (Broken Grain)",
+  "INDIA GATE Regular Choice Basmati Rice",
+  "INDIA GATE Mini Mogra Basmati Rice (Broken Grain)"
+  ]
+  }
+  
