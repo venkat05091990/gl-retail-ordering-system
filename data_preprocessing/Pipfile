@@ -1,0 +1,20 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+papermill = "*"
+ipykernel = "*"
+pandas = "*"
+seaborn = "*"
+matplotlib = "*"
+pymysql = "*"
+sqlalchemy = "*"
+cryptography = "*"
+mysql-connector-python = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3"
