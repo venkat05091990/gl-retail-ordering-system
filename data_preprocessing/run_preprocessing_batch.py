@@ -28,7 +28,7 @@ def set_paths_and_create_job():
     source_data_path = data_path + source_data
     output_notebook_path = output_notebook_path + start_time + '_' + source_notebook
     preprocessed_data = processed_data_path  + start_time + '_'+ source_data.replace('.xlsx','.csv')
-    unprocessed_data = unprocessed_data_path + start_time + '_unprocessed_'+  source_data.replace('.xlsx','.csv')
+    unprocessed_data = unprocessed_data_path + start_time + '_'+  source_data.replace('.xlsx','.csv')
     status = 0
     
     batch_id = db.insert_job(source_data_path, source_notebook_path, preprocessed_data, unprocessed_data ,output_notebook_path, status, start_time)
