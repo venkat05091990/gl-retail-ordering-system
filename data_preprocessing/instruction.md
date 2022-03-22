@@ -57,4 +57,4 @@ Open terminal on the project location
 3. Run the below command to get the unprocessed Data from Database
    python get_unprocessed_data.py
 
-   <img src="/data_preprocessing/screenshots/get_unprocessed_data.jpg.jpg" width=800 />
+   <img src="/data_preprocessing/screenshots/get_unprocessed_data.jpg" width=800 />
