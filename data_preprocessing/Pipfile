@@ -9,6 +9,10 @@ ipykernel = "*"
 pandas = "*"
 seaborn = "*"
 matplotlib = "*"
+pymysql = "*"
+sqlalchemy = "*"
+cryptography = "*"
+mysql-connector-python = "*"
 
 [dev-packages]
 
