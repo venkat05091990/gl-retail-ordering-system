@@ -2,7 +2,7 @@
 import sys
 import mysql.connector
 
-
+# CHANGE THE MYSQL DATABASE CONNECTION HERE
 def get_db_connection():
     username="dppuser"
     password="password"
