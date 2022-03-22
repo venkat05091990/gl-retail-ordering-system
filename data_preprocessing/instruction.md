@@ -30,7 +30,7 @@
 
    python .\run_preprocessing_batch.py 'Grocery, Fruits and Dry Fruits.csv' Grocery_Data_Preprocessing.ipynb
 
-
+<img src="/data_preprocessing/screenshots/data_preprocessing execution.jpg" width=800 />
 
 ## Tracking the data preprocessing job status
 
