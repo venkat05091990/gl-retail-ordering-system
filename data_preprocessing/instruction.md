@@ -9,6 +9,8 @@
 
 4. Run the following command from the project folder. This will install required libraries from Pipfile present in this directory. If the deployment team is not using pipenv, then the libraries in the Pipfile need to be manually installed. 
    pipenv install
+   
+   <img src="/data_preprocessing/screenshots/pipenv.jpg" width=800 />
 
 5. Run the following command to activate the pipenv environment
    pipenv shell
@@ -17,6 +19,10 @@
    python .\db_setup.py
 
 7. Change the mysql database connection details in the cell below heading "Database Connection" input jupyter notebook and get_db_connection() function in db_setup.py file
+   
+   <img src="/data_preprocessing/screenshots/db_setup_file_connection.jpg" width=800 />
+   
+   <img src="/data_preprocessing/screenshots/input notebook db_connection.jpg" width=800 />
 
 ## Perform Data Preprocessing
 
@@ -30,7 +36,7 @@
 
    python .\run_preprocessing_batch.py 'Grocery, Fruits and Dry Fruits.csv' Grocery_Data_Preprocessing.ipynb
 
-<img src="/data_preprocessing/screenshots/data_preprocessing execution.jpg" width=800 />
+   <img src="/data_preprocessing/screenshots/data_preprocessing execution.jpg" width=800 />
 
 ## Tracking the data preprocessing job status
 
@@ -38,9 +44,13 @@ Open terminal on the project location
 
 1. Run the below command to get the preprocessing job statuses 
    python get_jobs.py
+   
+   <img src="/data_preprocessing/screenshots/data_preprocessing_job_details.jpg" width=800 />
 
 2. Run the below command to get the Preprocessed Data from Database
    python get_preprocessed_data.py
 
 3. Run the below command to get the unprocessed Data from Database
    python get_unprocessed_data.py
+
+   <img src="/data_preprocessing/screenshots/get_unprocessed_data.jpg.jpg" width=800 />
