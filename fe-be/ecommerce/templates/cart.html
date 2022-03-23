@@ -20,29 +20,28 @@
 				<div class="wrap-table-shopping-cart bgwhite">
 					<table class="table-shopping-cart">
 						<tr class="table-head">
-							<th class="column-1"></th>
-							<th class="column-2">Product</th>
-							<th class="column-3">Price</th>
-							<th class="column-4 p-l-70">Quantity</th>
-							<th class="column-5">Subtotal</th>
+							<th class="column-1">&ensp; &ensp;&ensp; &ensp;</th>
+							<th class="column-2">&ensp; &ensp;&ensp; &ensp; Product</th>
+							<th class="column-3">&ensp; &ensp; &ensp; &ensp; Price</th>
+							<th class="column-4 p-l-70">&ensp; &ensp; &ensp; &ensp; Quantity</th>
+							<th class="column-5">&ensp; &ensp; &ensp; &ensp; Subtotal</th>
 						</tr>
 						{% for row in cartData %}
 						<tr class="table-row">
 							<td class="column-1">
 								<div class="cart-img-product b-rad-4 o-f-hidden">
-
 									<img src={{ row[5] }} id="itemImage" style="width:150px;height:150px;"/>
 								</div>
 							</td>
-							<td class="column-2">{{row[2]}}</td>
+							<td class="column-2"> &ensp; &ensp; &ensp; &ensp; {{row[2]}}</td>
                             <span width="20px"></span>
-							<td class="column-3"> &#8377 {{row[3]}}</td>
+							<td class="column-3"> &ensp; &ensp; &ensp;&ensp; &#8377 {{row[3]}}</td>
 
-							<td class="column-4">
+							<td class="column-4"> &ensp; &ensp; &ensp; &ensp;
 									<input class="size8 m-text18 t-center num-product" type="number" name="num-product1" value="{{row[4]}}" disabled>
-                                    <a href="/removeFromCart?productId={{row[1]}}"/>Remove
+                                    &ensp; &ensp; <a href="/removeFromCart?productId={{row[1]}}"/>Remove
 							</td>
-							<td class="column-5">&#8377 {{row[6]}}</td>
+							<td class="column-5">&ensp; &ensp; &ensp; &ensp; &#8377 {{row[6]}}</td>
 						</tr>
                     {% endfor %}
 

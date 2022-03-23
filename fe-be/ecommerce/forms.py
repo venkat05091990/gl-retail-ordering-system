@@ -25,21 +25,18 @@ def getAllProducts():
         .group_by(Product.sku,Product.sub_product_id,Product.brand, Product.weight, Product.product_name) \
         .limit(10) \
         .all()
-    print(itemData)
     return itemData
 
 def getRecommendedProducts(list):
-    recommendedProducts = Product.query.join(ProductCategory, Product.productid == ProductCategory.productid) \
+    itemData = Product.query.join(ProductCategory, Product.productid == ProductCategory.productid) \
         .add_columns(Product.productid, Product.product_name, Product.discounted_price, Product.description,
                      Product.image, Product.stock,Product.sub_product_id,
-                     func.group_concat(Product.weight,'-',Product.discounted_price , '-', Product.sku, '-', Product.sub_product_id)) \
-        .join(Category, Category.categoryid == ProductCategory.categoryid) \
-        .filter(Product.productid.in_([list])) \
-        .group_by(Product.sku,Product.sub_product_id) \
-        .order_by(Category.categoryid.desc()) \
+                     func.group_concat(Product.weight,'-',Product.discounted_price , '-', Product.productid, '-', Product.sub_product_id) ) \
+        .filter(Product.productid.in_(list)) \
+        .group_by(Product.sku,Product.sub_product_id,Product.brand, Product.weight, Product.product_name) \
         .limit(10) \
         .all()
-    return recommendedProducts
+    return itemData
 
 
 def getCategoryDetails():
@@ -204,7 +201,7 @@ def getusercartdetails():
     userId = User.query.with_entities(User.userid).filter(User.email == session['email']).first()
 
     productsincart = Product.query.join(Cart, (Product.productid == Cart.productid ) &  (Product.weight == Cart.subproductid) ) \
-        .add_columns(Product.sku, Product.product_name, Product.discounted_price, Cart.quantity, Product.image) \
+        .add_columns(Product.productid, Product.product_name, Product.discounted_price, Cart.quantity, Product.image) \
         .add_columns(Product.discounted_price * Cart.quantity).filter(
         Cart.userid == userId)
     totalsum = 0

@@ -7,7 +7,7 @@ Created on Thu Mar 17 16:42:03 2022
 
 import streamlit as st
 import pandas as pd
-df = pd.read_csv(r"C:\Users\sudheerkona\Downloads\IIIT_Project\flipkart_data.csv")       
+df = pd.read_csv(r"C:\Users\akhil.singireddy\PycharmProjects\grocart\gl-retail-ordering-system\Search-Service\flipkart_data.csv")
 s=st.text_input("enter text")
 def pred(n,s):
     temp = [x for x in df.name if s in x.lower()]
