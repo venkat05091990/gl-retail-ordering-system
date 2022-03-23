@@ -55,26 +55,19 @@ def root():
     
     loggedIn, firstName, productCountinKartForGivenUser = getLoginUserDetails()
     allProductDetails = getAllProducts()
-    print(allProductDetails)
     allProductsMassagedDetails = massageItemData(allProductDetails)
-    print(allProductDetails)
     categoryData = getCategoryDetails()
-    json = {"Product_ids": [1, 2, 202228061, 202222701, 202228227, 202225329, 202214809, 202222712,
-                            202222109, 202222110, 202228231, 202222113, 202222702, 202222116, 202222120, 202222189,
-                            202222697, 202222105, 202222122, 202222125]}
+    json = {"Product_ids": [1, 2,3,4,5]}
 
     list = []
-
     for i in range(0, len(json['Product_ids'])):
         list.append(json['Product_ids'][i])
 
-    print(list)
-    list1 = '1'
-    print(list1)
-    # recommendedProducts = getRecommendedProducts(list1)
+    recommendedProducts = getRecommendedProducts(list)
+    recommendedProductsMassagedDetails = massageItemData(recommendedProducts)
     return render_template('index.html', itemData=allProductsMassagedDetails, loggedIn=loggedIn, firstName=firstName,
                            productCountinKartForGivenUser=productCountinKartForGivenUser,
-                           categoryData=categoryData)
+                           categoryData=categoryData,recommendedProducts=recommendedProductsMassagedDetails)
 
 
 @app.route("/displayCategory")

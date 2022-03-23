@@ -60,9 +60,8 @@
     <div class="product-card">
 
         <div class="product-image">
-            <span class="discount-tag">15% off</span>
+<!--            <span class="discount-tag">15% off</span>-->
 			<a href="/productDescription?productId={{row.productid}}">
-<!--			<img src={{ url_for('static', filename='uploads/' + row.image) }} id="itemImage" class="product-thumb" alt="" />-->
 			<img src="{{ row.image }}"/>
 			</a>
         </div>
@@ -95,15 +94,15 @@
 		<h2 align="left" style="display: block; color: black; font-size: 2em; font-family: Montserrat-Regular;"><span> Recommended Items </span> </h2>
 		<div  id="wrapper">
 	<div class="product-container">
-		{% for data in itemData %}
-				{% for row in data %}
+
+		{% for data in recommendedProducts %}
+		{% for row in data %}
     <div class="product-card">
 
         <div class="product-image">
-            <span class="discount-tag">&#8377 15 off</span>
+<!--            <span class="discount-tag">15% off</span>-->
 			<a href="/productDescription?productId={{row.productid}}">
-<!--			<img src={{ url_for('static', filename='uploads/' + row.image) }} id="itemImage" class="product-thumb" alt="" />-->
-				<img src="{{ row.image }}"/>
+			<img src="{{ row.image }}"/>
 			</a>
         </div>
 
