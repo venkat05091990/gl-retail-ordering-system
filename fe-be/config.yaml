@@ -3,3 +3,4 @@ mysql_user: 'root'
 # Enter your password in field below
 mysql_password: 'rootroot'
 mysql_db: 'grocart'
+recommendationServiceUrl : 'http://127.0.0.1:8000/predict'
