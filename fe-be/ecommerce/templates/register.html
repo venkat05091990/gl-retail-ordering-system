@@ -1,0 +1,98 @@
+{% extends "header.html"  %}
+{% block content %}
+
+<form action="/register" method="POST" type="submit" onsubmit="return validate();">
+    <div class="row">
+        <div class="form1"><p> Email: </p></div>
+        <div class="forminput"><p><input type="email" name="email"></p></div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="form1"><p>Password: </p></div>
+        <div class="forminput"><p><input type="password" name="password" id="password" required></p></div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="form1"> <p>Confirm Password: </p></div>
+        <div class="forminput"> <p> <input type="password" name="cpassword" id="cpassword" required></p></div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="form1"><p>First Name: </p> </div>
+        <div class="forminput"> <p> <input type="text" name="firstName" required></p></div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="form1"><p>Last Name: </p></div>
+        <div class="forminput">  <p> <input type="text" name="lastName" required></p></div>
+    </div>
+    <br>
+    <div class="row">
+            <div class="form1"><p>Address: </p></div>
+            <div class="forminput"><p><input type="text" name="address" required></p></div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="form1"><p>Country: </p></div>
+        <div class="forminput">
+        <p>
+        <select id="countySel" name="country" size="1" required>
+            <option value="" selected="selected">-- Select Country --</option>
+        </select>
+        </p>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="form1"><p>State: </p></div>
+        <div class="forminput">
+            <p>
+            <select id="stateSel" name="state" size="1" required>
+                <option value="" selected="selected">-- Select State--</option>
+            </select>
+            </p>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="form1"><p>City: </p></div>
+        <div class="forminput">
+            <p>
+            <select id="citySel" name="city" size="1" required>
+                <option value="" selected="selected">-- Select City--</option>
+            </select>
+            </p>
+        </div>
+    </div>
+
+    <br>
+    <div class="row">
+        <div class="form1"><p>Zip Code: </p></div>
+        <div> <p> <input type="text" name="zipcode" required></p></div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="form1"><p>Phone Number: </p> </div>
+        <div> <p> <input type="text" name="phone" required></p></div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="form1"></div>
+        <div> <p><input type="submit" value="Register"></p></div>
+    </div>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById('id01');
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</form>
+
+
+{% endblock content %}

@@ -1,0 +1,59 @@
+{% extends "header.html"  %}
+{% block content %}
+  <body class="main">
+
+    <div class="container">
+
+      <div class="row marketing">
+
+        <div class="col-lg-12">
+
+          <h4><b>{{username}}</b></h4>
+<hr />
+
+    <div>
+        <center>
+        <h4>Success - your order is confirmed!</h4>
+        <h5>Order number # :{{ ordernumber |join('')}}</h5>
+        <hr />
+        </center>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+    		<div class="row">
+    			<div class="col-xs-6">
+        			<address>
+    				<strong>Shipping Address:</strong><br>
+                        {{fullname}}<br>
+                        {{address}}<br>
+                        <br>
+
+    				</address>
+
+    			</div>
+    			<div class="col-xs-6 text-right">
+                <h1><span class="glyphicon glyphicon glyphicon-cloud-download" aria-hidden="true"></span></h1>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+
+    <div class="row">
+    	<div class="col-md-12">
+    		<div class="panel panel-default">
+
+
+    	</div>
+    </div>
+</div>
+
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    </div>
+  </body>
+{% endblock content %}
