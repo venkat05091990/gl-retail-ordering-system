@@ -22,7 +22,7 @@
    
    Connection Json File
    
-   <img src="/data_preprocessing/screenshots/connection json file.jpg" width=400 />
+   <img src="/data_preprocessing/screenshots/connection json file.jpg" width=600 />
    
    Setting DB Connection in Connection Json File
    
