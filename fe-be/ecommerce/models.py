@@ -93,7 +93,7 @@ class Order(db.Model):
 
     def __repr__(self):
         return f"Order('{self.orderid}', '{self.order_date}','{self.total_price}','{self.userid}'')"
-
+#
 class OrderedProduct(db.Model):
     __tablename__ = "ordered_details"
     __table_args__ = {'extend_existing': True}
