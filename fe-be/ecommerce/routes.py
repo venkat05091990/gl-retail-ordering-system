@@ -1,13 +1,37 @@
 import os
 import secrets
 import Image
-from flask import render_template, request
 from ecommerce import app
 from ecommerce.forms import *
 from plotly.offline import plot
 import plotly.graph_objs as go
 from flask import Markup
 from ecommerce.models import *
+from flask import Flask, Response, render_template, request
+import json
+import requests
+import yaml
+
+loadapi = yaml.safe_load(open('config.yaml'))
+
+@app.route('/autocomplete', methods=['GET'])
+def autocomplete():
+    products = getProductList()
+    products = [value for (value,) in products]
+    return Response(json.dumps(products), mimetype='application/json')
+
+
+@app.route('/recommendationService', methods=['GET', 'POST'])
+def recommendationService():
+    # productId = request.args.get("productId")
+    api_url = "https://jsonplaceholder.typicode.com/todos"
+    products = {"userId": 1, "title": "Buy milk", "completed": False}
+    # products = {"userId": productId}
+    response = requests.post(api_url, json=products)
+    print(response.json())
+    return response
+
+
 
 
 @app.route("/login", methods=['POST', 'GET'])
@@ -31,12 +55,9 @@ def logout():
     session.pop('email', None)
     return redirect(url_for('root'))
 
-
 @app.route("/registerationForm")
 def registrationForm():
     return render_template("register.html")
-
-
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
@@ -48,33 +69,38 @@ def register():
         else:
             return render_template('index.html', error="Registration failed")
 
-
-@app.route("/")
-@app.route("/home")
+@app.route("/", methods=['GET'])
+@app.route("/home",  methods=['GET'])
 def root():
-    
     loggedIn, firstName, productCountinKartForGivenUser = getLoginUserDetails()
     allProductDetails = getAllProducts()
     allProductsMassagedDetails = massageItemData(allProductDetails)
     categoryData = getCategoryDetails()
-    json = {"Product_ids": [1, 2,3,4,5]}
+    if loggedIn:
+        userProduct = userRecommendations()
+        api_url = loadapi['recommendationServiceUrl']
+        products = {"product_id": userProduct[0]}
+        response = requests.post(api_url, json=products)
+        prod_json = response.json()
 
-    list = []
-    for i in range(0, len(json['Product_ids'])):
-        list.append(json['Product_ids'][i])
+        list = []
+        for i in range(0, len(prod_json['Product_ids'])):
+            list.append(prod_json['Product_ids'][i])
 
-    recommendedProducts = getRecommendedProducts(list)
-    recommendedProductsMassagedDetails = massageItemData(recommendedProducts)
-    return render_template('index.html', itemData=allProductsMassagedDetails, loggedIn=loggedIn, firstName=firstName,
+        recommendedProducts = getRecommendedProducts(list)
+        recommendedProductsMassagedDetails = massageItemData(recommendedProducts)
+        return render_template('index.html', itemData=allProductsMassagedDetails, loggedIn=loggedIn, firstName=firstName,
                            productCountinKartForGivenUser=productCountinKartForGivenUser,
                            categoryData=categoryData,recommendedProducts=recommendedProductsMassagedDetails)
-
-
+    else:
+        return render_template('index.html', itemData=allProductsMassagedDetails, loggedIn=loggedIn,
+                               firstName=firstName,
+                               productCountinKartForGivenUser=productCountinKartForGivenUser,
+                               categoryData=categoryData)
 @app.route("/displayCategory")
 def displayCategory():
     loggedIn, firstName, noOfItems = getLoginUserDetails()
     categoryId = request.args.get("categoryId")
-
     productDetailsByCategoryId = Product.query.join(ProductCategory, Product.productid == ProductCategory.productid) \
         .add_columns(Product.productid, Product.product_name, Product.regular_price, Product.discounted_price,
                      Product.image) \
@@ -94,10 +120,45 @@ def productDescription():
     loggedIn, firstName, noOfItems = getLoginUserDetails()
     productid = request.args.get('productId')
     productDetailsByProductId = getProductDetails(productid)
-    return render_template("productDescription.html", data=productDetailsByProductId, loggedIn=loggedIn,
-                           firstName=firstName,
-                           noOfItems=noOfItems)
+    api_url = loadapi['recommendationServiceUrl']
+    products = {"product_id": productid}
+    response = requests.post(api_url, json=products)
+    prod_json = response.json()
+    list = []
+    for i in range(0, len(prod_json['Product_ids'])):
+        list.append(prod_json['Product_ids'][i])
 
+    recommendedProducts = getRecommendedProducts(list)
+    recommendedProductsMassagedDetails = massageItemData(recommendedProducts)
+
+    return render_template("productDescription.html", data=productDetailsByProductId, loggedIn=loggedIn,
+                           firstName=firstName,productCountinKartForGivenUser=noOfItems, recommendedProducts=recommendedProductsMassagedDetails)
+
+@app.route('/search', methods=['GET', 'POST'])
+def index():
+
+    loggedIn, firstName, noOfItems = getLoginUserDetails()
+    productName = request.args.get('productname')
+    print(productName)
+    if productName == '':
+        return redirect(url_for('root'))
+    else:
+        productDetailsByProductId = getProductDetailsByName(productName)
+        print(productDetailsByProductId)
+        print(type(productDetailsByProductId))
+        id = productDetailsByProductId[0].productid
+        api_url = loadapi['recommendationServiceUrl']
+        products = {"product_id": id}
+        response = requests.post(api_url, json=products)
+        prod_json = response.json()
+        list = []
+        for i in range(0, len(prod_json['Product_ids'])):
+            list.append(prod_json['Product_ids'][i])
+
+        recommendedProducts = getRecommendedProducts(list)
+        recommendedProductsMassagedDetails = massageItemData(recommendedProducts)
+        return render_template("productSearch.html", itemData=productDetailsByProductId, loggedIn=loggedIn,
+                           firstName=firstName,productCountinKartForGivenUser=noOfItems, recommendedProducts=recommendedProductsMassagedDetails)
 
 @app.route("/addToCart",  methods=['GET', 'POST'])
 def addToCart():
@@ -116,16 +177,46 @@ def addToCart():
         # flash('please log in !!', 'success')
         return redirect(url_for('root'))
 
+@app.route("/addToCartProduct",  methods=['GET', 'POST'])
+def addToCartProduct():
+    if isUserLoggedIn():
+        productId =  request.args.get('productId')
+        subProductId = request.args.get('subProductId')
+        extractAndPersistKartDetails(productId,subProductId)
+        # Using Flask-SQLAlchmy normal query
+        # extractAndPersistKartDetailsUsingkwargs(productId)
+        flash('Item successfully added to cart !!', 'success')
+        return redirect(url_for('root'))
+    else:
+        # flash('please log in !!', 'success')
+        return redirect(url_for('root'))
+
 
 
 @app.route("/cart")
 def cart():
     if isUserLoggedIn():
+        loadapi = yaml.safe_load(open('config.yaml'))
         loggedIn, firstName, productCountinKartForGivenUser = getLoginUserDetails()
         cartdetails, totalsum, tax = getusercartdetails();
+        # api_url = loadapi['recommendationServiceUrl']
+        # products = {"userId": 1, "title": "Buy milk", "completed": False}
+        api_url = loadapi['recommendationServiceUrl']
+        products = {"product_id": 202212001}
+        response = requests.post(api_url, json=products)
+        print(response.json())
+        prod_json = response.json()
+        json = {"Product_ids": [1, 2, 3, 4, 5]}
+        print(response.json())
+        list = []
+        for i in range(0, len(prod_json['Product_ids'])):
+            list.append(prod_json['Product_ids'][i])
+
+        recommendedProducts = getRecommendedProducts(list)
+        recommendedProductsMassagedDetails = massageItemData(recommendedProducts)
         return render_template("cart.html", cartData=cartdetails,
                                productCountinKartForGivenUser=productCountinKartForGivenUser, loggedIn=loggedIn,
-                               firstName=firstName, totalsum=totalsum, tax=tax)
+                               firstName=firstName, totalsum=totalsum, tax=tax, recommendedProducts=recommendedProductsMassagedDetails)
     else:
         return redirect(url_for('root'))
 
