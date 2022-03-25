@@ -2,8 +2,9 @@
 {% block content %}
 <!-- Title Page -->
 	<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" >
-
-		<h2 align="left" style="display: block; color: black; font-size: 2em; font-family: Montserrat-Regular;"><span> Cart </span> </h2>
+		<h2 class="l-text2 t-center"  style="display: block; color: black; font-size: 2em; font-family: Montserrat-Regular;">
+			Cart
+		</h2>
 	</section>
 
 	<!-- Cart -->
@@ -89,44 +90,4 @@
 		</div>
 	</section>
 
-<div class="row">
-	<div class="col-md-12">
-		<br>
-		<h2 align="left" style="display: block; color: black; font-size: 2em; font-family: Montserrat-Regular;"><span> Recommended Items </span> </h2>
-		<div  id="wrapper">
-	<div class="product-container">
-
-		{% for data in recommendedProducts %}
-		{% for row in data %}
-    <div class="product-card">
-
-        <div class="product-image">
-<!--            <span class="discount-tag">15% off</span>-->
-			<a href="/productDescription?productId={{row.productid}}">
-			<img src="{{ row.image }}"/>
-			</a>
-        </div>
-
-        <div class="product-info">
-            <p class="product-short-des">{{ row.description }} </p>
-			<form action="/addToCart" method="POST" type="submit" onsubmit="return validate();">
-				<select id="weightSel" class="weightSel" name="weight" size="1" required>
-					{% for wps in row[-1].split(",") %}
-					<option value="{{ wps.split('-')[2] }} - {{ wps.split('-')[0] }} ">{{ wps.split("-")[0] }} -  &#8377 {{ wps.split("-")[1]  }}</option>
-					{% endfor %}
-				</select>
-				<div id="addToCart" >
-				<a><p><input type="submit" value="Add to Cart"></p>  </a>
-				</div>
-			</form>
-        </div>
-    </div>
-		{% endfor %}
-		{% endfor %}
-		<button class="pre-btn"><img src="static/images/arrow.png" alt=""></button>
-		<button class="nxt-btn"><img src="static/images/arrow.png" alt=""></button>
-	</div>
-        </div>
-		</div>
-</div>
 {% endblock content %}

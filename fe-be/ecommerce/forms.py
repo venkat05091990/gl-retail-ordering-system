@@ -14,6 +14,8 @@ from wtforms.validators import DataRequired, Length, Email
 from ecommerce import mysql
 from ecommerce.models import *
 
+from ecommerce.models import Product
+
 
 def getAllProducts():
     itemData = Product.query.join(ProductCategory, Product.productid == ProductCategory.productid) \
@@ -24,10 +26,6 @@ def getAllProducts():
         .limit(10) \
         .all()
     return itemData
-
-def getProductList():
-    productList = Product.query.with_entities(Product.product_name).distinct().all()
-    return productList
 
 def getRecommendedProducts(list):
     itemData = Product.query.join(ProductCategory, Product.productid == ProductCategory.productid) \
@@ -63,20 +61,6 @@ def massageItemData(data):
         ans.append(curr)
     return ans
 
-def massageProductData(data):
-    ans = []
-    i = 0
-    while i < len(data):
-        curr = []
-        for j in range(6):
-            if i >= len(data):
-                break
-
-            curr.append(data[i])
-            i += 1
-        print(curr)
-        ans.append(curr)
-    return ans
 
 def is_valid(email, password):
     # Using Flask-SQLAlchmy ORM
@@ -119,9 +103,6 @@ def getProductDetails(productId):
     productDetailsById = Product.query.filter(Product.productid == productId).first()
     return productDetailsById
 
-def getProductDetailsByName(productName):
-    productDetailsByName = Product.query.filter(Product.product_name.like('%'+productName+'%') ).all()
-    return productDetailsByName
 
 def extractAndPersistUserDataFromForm(request):
     password = request.form['password']
@@ -158,11 +139,7 @@ def isUserAdmin():
         currentUser = User.query.get_or_404(userId)
         return currentUser.isadmin
 
-def userRecommendations():
-    productId = Order.query.join(OrderedProduct, OrderedProduct.orderid == Order.orderid) \
-        .join(User, Order.userid == User.userid) \
-        .with_entities(OrderedProduct.productid).filter(User.email == session['email']).first()
-    return productId
+
 
 # Using Flask-SQL Alchemy SubQuery
 def extractAndPersistKartDetailsUsingSubquery(sku,subproductId):
@@ -176,22 +153,6 @@ def extractAndPersistKartDetailsUsingSubquery(sku,subproductId):
         cart = Cart(userid=userId, productid=sku,subproductid=subproductId, quantity=1)
     else:
         cart = Cart(userid=userId, productid=sku,subproductid=subproductId, quantity=qry[0][0] + 1)
-
-    db.session.merge(cart)
-    db.session.flush()
-    db.session.commit()
-
-def extractAndPersistKartDetails(productId,subProductId):
-    userId = User.query.with_entities(User.userid).filter(User.email == session['email']).first()
-    userId = userId[0]
-
-    subqury = Cart.query.filter(Cart.userid == userId).filter(Cart.productid == productId).subquery()
-    qry = db.session.query(Cart.quantity).select_entity_from(subqury).all()
-
-    if len(qry) == 0:
-        cart = Cart(userid=userId, productid=productId,subproductid=subProductId, quantity=1)
-    else:
-        cart = Cart(userid=userId, productid=productId,subproductid=subProductId, quantity=qry[0][0] + 1)
 
     db.session.merge(cart)
     db.session.flush()
