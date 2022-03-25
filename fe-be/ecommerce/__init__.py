@@ -4,6 +4,7 @@ from flask_bcrypt import Bcrypt
 from flask_mysqldb import MySQL
 import yaml
 
+#
 ######### Enable this for debugging #########
 # import logging
 # logging.basicConfig()

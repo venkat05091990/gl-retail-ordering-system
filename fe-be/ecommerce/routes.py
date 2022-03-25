@@ -192,7 +192,7 @@ def addToCartProduct():
         return redirect(url_for('root'))
 
 
-
+#
 @app.route("/cart")
 def cart():
     if isUserLoggedIn():
