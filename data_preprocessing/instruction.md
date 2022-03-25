@@ -22,11 +22,11 @@
    
    Connection Json File
    
-   <img src="/data_preprocessing/screenshots/connection json file.jpg" width=800 />
+   <img src="/data_preprocessing/screenshots/connection json file.jpg" width=400 />
    
    Setting DB Connection in Connection Json File
    
-   <img src="/data_preprocessing/screenshots/connection configuration.jpg" width=800 />
+   <img src="/data_preprocessing/screenshots/connection configuration.jpg" width=600 />
 
 ## Perform Data Preprocessing
 
