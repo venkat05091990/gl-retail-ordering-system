@@ -19,6 +19,14 @@
    python .\db_setup.py
 
 7. Change the mysql database connection details in the connection.json file. This connection is used in jupyter notebooks and all python files.
+   
+   Connection Json File
+   
+   <img src="/data_preprocessing/screenshots/connection json file.jpg" width=800 />
+   
+   Setting DB Connection in Connection Json File
+   
+   <img src="/data_preprocessing/screenshots/connection configuration.jpg" width=800 />
 
 ## Perform Data Preprocessing
 
