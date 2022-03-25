@@ -1,14 +1,17 @@
 {% extends "layout.html" %}
 {% block content %}
+<<<<<<< HEAD
 <br>
 <!---->
+=======
+>>>>>>> e7ab56aed1ef4659bf641ba3c0d12728e1e709f5
     <div class="container">
         <div id="display">
             <div id="productName">
                 <h1>{{product.product_name}}</h1>
             </div>
             <div>
-                <img src="{{ product.image }}"/>
+                <img src={{url_for('static', filename='uploads/'+product.image) }} id="productImage"/>
             </div>
 
                 <div id="productDescription">
