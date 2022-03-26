@@ -162,7 +162,7 @@ def userRecommendations():
     productId = Order.query.join(OrderedProduct, OrderedProduct.orderid == Order.orderid) \
         .join(User, Order.userid == User.userid) \
         .with_entities(OrderedProduct.productid).filter(User.email == session['email']).first()
-    return productId
+    return 202212004
 
 # Using Flask-SQL Alchemy SubQuery
 def extractAndPersistKartDetailsUsingSubquery(sku,subproductId):
