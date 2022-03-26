@@ -1,16 +1,19 @@
 # Import module
 import sys
 import mysql.connector
+import json
 
 # CHANGE THE MYSQL DATABASE CONNECTION HERE
 def get_db_connection():
-    username="dppuser"
-    password="password"
-    database="grocart"
-    server="localhost"
-    port="3306"
-    conn = mysql.connector.connect(user=username, password=password, host='127.0.0.1', database=database)
-    return conn
+    with open("connection.json", "r") as read_file:
+        conn_j = json.load(read_file)
+        username=conn_j['username']
+        password=conn_j['password']
+        database=conn_j['database']
+        server=conn_j['server']
+        port=conn_j['port']
+        conn=mysql.connector.connect(user=username, password=password, host=server, database=database)
+        return conn
  
 # Connecting to sqlite
 # connection object

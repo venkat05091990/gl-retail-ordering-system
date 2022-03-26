@@ -1,0 +1,7 @@
+{
+	"server":"database-1.cqml2mhj7aba.us-east-1.rds.amazonaws.com",
+	"database":"grocart",
+	"username":"root",
+	"password":"rootroot",
+	"port":"3306"
+}

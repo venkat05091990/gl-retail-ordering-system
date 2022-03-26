@@ -3,16 +3,19 @@ import sqlite3
 import sys
 import mysql
 import mysql.connector
+import json
 
 
-def get_db_connection():
-    username="dppuser"
-    password="password"
-    database="grocart"
-    server="localhost"
-    port="3306"
-    conn = mysql.connector.connect(user=username, password=password, host='127.0.0.1', database=database)
-    return conn
+def get_db_connection():    
+    with open("connection.json", "r") as read_file:
+        conn_j = json.load(read_file)
+        username=conn_j['username']
+        password=conn_j['password']
+        database=conn_j['database']
+        server=conn_j['server']
+        port=conn_j['port']
+        conn=mysql.connector.connect(user=username, password=password, host=server, database=database)
+        return conn
     
 def insert_job(data_path, notebook_path, processed_data_path, unprocessed_data_path, processed_notebook_path, status, start_time):
     # Connecting to sqlite

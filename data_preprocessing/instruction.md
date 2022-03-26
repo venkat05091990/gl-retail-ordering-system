@@ -18,15 +18,15 @@
 6. Run the following command to setup the mysql database
    python .\db_setup.py
 
-7. Change the mysql database connection details in the cell below heading "Database Connection" input jupyter notebook and get_db_connection() function in db_setup.py file
+7. Change the mysql database connection details in the connection.json file. This connection is used in jupyter notebooks and all python files.
    
-   Modifications in the db_setup.py
+   Connection Json File
    
-   <img src="/data_preprocessing/screenshots/db_setup_file_connection.jpg" width=800 />
+   <img src="/data_preprocessing/screenshots/connection json file.jpg" width=600 />
    
-   Modifications in the input notebook Grocery_Data_Preprocessing.ipynb
+   Setting DB Connection in Connection Json File
    
-   <img src="/data_preprocessing/screenshots/input notebook db_connection.jpg" width=800 />
+   <img src="/data_preprocessing/screenshots/connection configuration.jpg" width=600 />
 
 ## Perform Data Preprocessing
 
